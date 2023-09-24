@@ -147,6 +147,3 @@ Apache License 2.0
 ##  The spec
 
 ```
-
----
-*This repo originally forked from [ETCDEVTeam/emerald-explorer](https://github.com/ETCDEVTeam/emerald-explorer).

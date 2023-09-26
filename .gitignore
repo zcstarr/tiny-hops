@@ -5,6 +5,7 @@ cache
 artifacts
 .env
 build
+forge-cache
 typechain
 packages/one-of-one-creation/out
 packages/1o1-contracts/out

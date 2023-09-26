@@ -1,0 +1,28 @@
+{
+  "name": "tiny-hops",
+  "version": "0.0.0-development",
+  "description": "A workflow executor for lilypad",
+  "main": "build/src/cli/index.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "gen": "npx hardhat compile && rm src/artifacts/contracts/**/*.dbg.json; typechain --target ethers-v6 --out-dir src/generated/typechain src/artifacts/contracts/facets/**/*.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.4",
+    "@nomicfoundation/hardhat-foundry": "^1.1.1",
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@typechain/ethers-v6": "^0.5.0",
+    "ethers": "^6.7.1",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "typescript": "^5.2.2"
+  }
+}

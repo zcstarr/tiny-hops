@@ -1,0 +1,13 @@
+node_modules
+
+#Hardhat files
+cache
+artifacts
+.env
+build
+typechain
+packages/one-of-one-creation/out
+packages/1o1-contracts/out
+local.json
+.DS_Store
+out

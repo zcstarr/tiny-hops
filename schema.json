@@ -1,0 +1,145 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "https://tiny-hops-workflow-schema",
+  "title": "workflow",
+  "$ref": "#/definitions/workflow",
+  "definitions": {
+    "version": {
+      "title": "version",
+      "type": "string"
+    },
+    "workflow": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "$ref": "#/definitions/version"
+        },
+        "steps": {
+          "$ref": "#/definitions/steps"
+        }
+      },
+      "required": ["version", "steps"]
+    },
+    "steps": {
+        "type": "array",
+        "items": {
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/stepItems"
+                },
+                {
+                    "$ref": "#/definitions/stepItem"
+                }
+            ]
+        }
+    },
+    "stepModule": {
+      "cmd": {
+        "title": "cmd",
+        "type": "string"
+      },
+      "params": {
+        "title": "params",
+        "type": "string"
+      },
+      "required": ["cmd","params"]
+    },
+    "stepItem": {
+      "title": "stepItem",
+      "type": "object",
+      "properties": {
+        "stepName": {
+          "$ref": "#/definitions/stepName"
+        },
+        "stepId": {
+            "$ref": "#/definitions/stepId"
+        },
+        "stepDesc": {
+          "$ref": "#/definitions/stepDesc"
+        },
+        "stepModule": {
+          "$ref": "#/definitions/stepModule"
+        }
+      },
+      "additionalItems": false,
+      "required": ["stepInput", "stepId"]
+    },
+    "stepItems": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/stepItem"
+      }
+    },
+    "stepId": {
+        "title": "stepId",
+        "type": "string"
+    },
+    "stepDesc": {
+      "title": "stepDesc",
+      "type": "string"
+    },
+    "stepName": {
+      "title": "stepName",
+      "type": "string"
+    },
+    "inputFormatStepId": {
+        "type": "object",
+        "properties": {
+            "stepId": {
+            "$ref": "#/definitions/stepId"
+            }
+        },
+        "additionalProperties": false
+    },
+    "inputFormatCid": {
+      "type": "object",
+      "properties": {
+        "cid": {
+          "$ref": "#/definitions/cid"
+        }
+      },
+      "additionalProperties": false
+    },
+    "inputFormatUri": {
+      "type": "object",
+      "properties": {
+        "uri": {
+          "type": "string",
+          "format": "uri", 
+          "pattern": "^^file://||^s3://||^ipfs://"
+        }
+      },
+      "additionalProperties": false
+    },
+    "inputFormatMetadata": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/inputFormatCid"
+        },
+        {
+          "$ref": "#/definitions/inputFormatUri"
+        },
+        {
+          "$ref": "#/definitions/stepId"
+        }
+      ]
+    },
+    "inputFormat": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/inputFormatMetadata"
+      }
+    },
+    "cid": {
+      "title": "cid",
+      "type": "string"
+    },
+    "stepInput": {
+      "title": "stepInput",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/inputFormat"
+      }
+    }
+  }
+}

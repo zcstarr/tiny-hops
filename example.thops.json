@@ -1,0 +1,14 @@
+{
+    "$schema": "./schema.json",
+    "steps": [
+        {
+            "stepDesc": "First cow say",
+            "stepId": "1",
+            "stepModule": {
+                "cmd": "cowsay:v0.0.1",
+                "params": "helloworld {{stepId}}"
+            }
+        }
+
+    ]
+}

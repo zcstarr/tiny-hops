@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+      "experimentalDecorators": true,
+      "target": "es5",
+      "module": "commonjs",
+      "lib": [
+        "es6",
+        "dom"
+      ],
+      "outDir": "build",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "allowSyntheticDefaultImports": true,
+      "forceConsistentCasingInFileNames": true,
+      "declaration": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "allowJs": true,
+      "noEmit": false,
+      "incremental": true,
+      "plugins": [ ]
+    },
+    "include": [
+      "src",
+      "examples"
+    ],
+    "exclude": [
+      "node_modules",
+      "node_modules/",
+      "build",
+      "**/node_modules"
+    ]
+  }

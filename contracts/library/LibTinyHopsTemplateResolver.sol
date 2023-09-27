@@ -72,7 +72,6 @@ library LibTinyHopsTemplateResolver {
                     stepId := shr(192, mload(ptr))
                 }
                 ptr += 8; // Move past the 8-byte stepId
-
                 result = string(abi.encodePacked(result, replacements[stepId]));
             }
         }

@@ -10,9 +10,29 @@ interface ModicumContract {
     ) external payable returns (uint256);
 }
 
+struct WorkflowEntry {
+    uint256 stepId;
+    string cmd;
+    string params;
+    uint256[] deps;
+}
+
+struct Workflow {
+    WorkflowEntry[][] entries;
+}
+
 contract TinyHops {
     address public contractAddress;
     ModicumContract remoteContractInstance;
+
+    // simple ownership mapping
+    mapping(uint256 => address) workflowIdToOwner;
+    mapping(uint256 => uint256) workflowIdToStatus;
+    mapping(uint256 => Workflow) workflowIdToWorkflow;
+    mapping(uint256 => uint256) workflowIdToBalance;
+
+    // auto increment workflow id
+    uint256 public workflowIdCounter;
 
     // See the latest result.
 
@@ -35,6 +55,26 @@ contract TinyHops {
         contractAddress = _modicumContract;
         //make a connection instance to the remote contract
         remoteContractInstance = ModicumContract(_modicumContract);
+        workflowIdCounter = 1;
+    }
+
+    function startWorkflow(
+        Workflow memory workflow
+    ) public payable returns (uint256) {
+        require(
+            msg.value >= 5 ether,
+            "Payment of at least 5 Ether per step is required maybe more"
+        );
+
+        workflowIdToOwner[workflowIdCounter] = msg.sender;
+        workflowIdToWorkflow[workflowIdCounter] = workflow;
+        workflowIdToBalance[workflowIdCounter] =
+            msg.value +
+            workflowIdToBalance[workflowIdCounter];
+
+        // kick off the first workflow steps
+
+        return ++workflowIdCounter;
     }
 
     function runBatchSDXL(

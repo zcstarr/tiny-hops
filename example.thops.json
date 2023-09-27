@@ -3,12 +3,40 @@
     "steps": [
         {
             "stepDesc": "First cow say",
+            "stepName": "cows say",
             "stepId": "1",
             "stepModule": {
                 "cmd": "cowsay:v0.0.1",
-                "params": "helloworld {{stepId}}"
+                "params": "{{stepName:2}} helloworld"
+            }
+        },
+        [{
+            "stepDesc": "First cow say",
+            "stepName": "cows say",
+            "stepId": "2",
+            "stepModule": {
+                "cmd": "cowsay:v0.0.1",
+                "params": "{{stepName:2}} hello parallel world {stepId:1}"
+            }
+        },
+        {
+            "stepDesc": "First cow say",
+            "stepName": "cows say",
+            "stepId": "3",
+            "stepModule": {
+                "cmd": "cowsay:v0.0.1",
+                "params": "{{stepName:2}} hello parallel world {stepId:1}"
+            }
+        }],
+        {
+            "stepDesc": "last cow say",
+            "stepName": "lastcowsay",
+            "stepId": "4",
+            "stepModule": {
+                "cmd": "cowsay:v0.0.1",
+                "params": "{{stepName:4}} hello parallel world {stepId:2} {stepId:3}"
             }
         }
-
     ]
 }
+

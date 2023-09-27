@@ -1,17 +1,15 @@
 # Tiny-Hops Schema
+#### Supported Template Variables
+```
+{{stepId:integer}} - Specifies the step resultCID to process
+```
+
 #### Example
 ```json
 {
  steps : [{
     stepName: "foobar", 
-    stepInput: 
-      [ {
-          cid: "xxxxx"    
-       }
-       ]
-    stepOutput: [ {
-        cid:
-     }]
+
   }]
 
 }

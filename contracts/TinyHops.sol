@@ -28,7 +28,6 @@ struct WorkflowEntry {
     uint256 stepId;
     string cmd;
     bytes params;
-    uint256[] deps;
 }
 
 struct Workflow {

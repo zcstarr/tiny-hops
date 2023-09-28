@@ -27,7 +27,7 @@ library LibTinyHopsTemplateResolver {
     function applyVariables(
         bytes memory byteStream,
         mapping(uint256 => string) storage replacements
-    ) public view returns (string memory) {
+    ) internal view returns (string memory) {
         string memory result = "";
         uint256 ptr = 0;
         uint256 startptr = 0;
@@ -80,7 +80,7 @@ library LibTinyHopsTemplateResolver {
     }
 
     // this allows anyone to validate a byte stream to ensure it is valid prior to a workflow call
-    function validateByteStream(bytes memory byteStream) public pure {
+    function validateByteStream(bytes memory byteStream) internal pure {
         uint256 ptr = 0;
         uint256 endPtr = 0;
         uint256 byteStreamLen = byteStream.length;

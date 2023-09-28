@@ -74,8 +74,7 @@ contract TinyHopsTest is Test {
             5 ether,
             0,
             "cowsay:v0.0.1",
-            buildWorkflowParamText("hello world"),
-            new uint256[](0)
+            buildWorkflowParamText("hello world")
         );
         uint256 workflowId = tinyHops.storeWorkflow(workflow);
         assertEq(workflowId, 1);
@@ -136,8 +135,7 @@ contract TinyHopsTest is Test {
             5 ether,
             0,
             "cowsay:v0.0.1",
-            buildWorkflowParamText("hello world l0"),
-            new uint256[](0)
+            buildWorkflowParamText("hello world l0")
         );
 
         workflow.entries[1][0] = WorkflowEntry(
@@ -148,8 +146,7 @@ contract TinyHopsTest is Test {
             abi.encodePacked(
                 buildWorkflowParamText("hello world l1(0,0) "),
                 buildWorkflowParamVar(0)
-            ),
-            new uint256[](0)
+            )
         );
 
         workflow.entries[1][1] = WorkflowEntry(
@@ -160,8 +157,7 @@ contract TinyHopsTest is Test {
             abi.encodePacked(
                 buildWorkflowParamText("hello world l1(0,1) "),
                 buildWorkflowParamVar(0)
-            ),
-            new uint256[](0)
+            )
         );
 
         workflow.entries[2][0] = WorkflowEntry(
@@ -175,8 +171,7 @@ contract TinyHopsTest is Test {
                 buildWorkflowParamVar(1),
                 buildWorkflowParamText(" l2(0,0) "),
                 buildWorkflowParamVar(2)
-            ),
-            new uint256[](0)
+            )
         );
         uint256 workflowId = tinyHops.storeWorkflow(workflow);
         assertEq(workflowId, 1);
@@ -248,8 +243,7 @@ contract TinyHopsTest is Test {
             5 ether,
             0,
             "cowsay:v0.0.1",
-            buildWorkflowParamText("hello world"),
-            new uint256[](0)
+            buildWorkflowParamText("hello world")
         );
         uint256 workflowId = tinyHops.storeWorkflow(workflow);
         assertEq(workflowId, 1);

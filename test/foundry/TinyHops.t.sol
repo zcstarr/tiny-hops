@@ -37,6 +37,14 @@ contract TinyHopsTest is Test {
             );
     }
 
+    function testStreamHex() public view {
+        bytes memory hello = buildWorkflowParamText("hello world ");
+        bytes memory stepId1 = buildWorkflowParamVar(1);
+
+        bytes memory testStream = abi.encodePacked(hello, stepId1);
+        console.logBytes(testStream);
+    }
+
     function getTestStream() public view returns (bytes memory testStream) {
         bytes memory hello = buildWorkflowParamText("hello ");
         bytes memory world = buildWorkflowParamText(" world ");

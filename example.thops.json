@@ -1,13 +1,15 @@
 {
-    "$schema": "./schema.json",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "version": "v0.0.1",
     "steps": [
         {
             "stepDesc": "First cow say",
             "stepName": "cows say",
             "stepId": "1",
             "stepModule": {
+                "cost": "5",
                 "cmd": "cowsay:v0.0.1",
-                "params": "{{stepName:2}} helloworld"
+                "params": "hello world"
             }
         },
         [{
@@ -15,8 +17,9 @@
             "stepName": "cows say",
             "stepId": "2",
             "stepModule": {
+                "cost": "5",
                 "cmd": "cowsay:v0.0.1",
-                "params": "{{stepName:2}} hello parallel world {stepId:1}"
+                "params": "parallel job 0 hello parallel world {{stepId:1}}"
             }
         },
         {
@@ -24,8 +27,9 @@
             "stepName": "cows say",
             "stepId": "3",
             "stepModule": {
+                "cost": "5",
                 "cmd": "cowsay:v0.0.1",
-                "params": "{{stepName:2}} hello parallel world {stepId:1}"
+                "params": "parallel job 1 hello parallel world {{stepId:1}}"
             }
         }],
         {
@@ -33,8 +37,9 @@
             "stepName": "lastcowsay",
             "stepId": "4",
             "stepModule": {
+                "cost": "5",
                 "cmd": "cowsay:v0.0.1",
-                "params": "{{stepName:4}} hello parallel world {stepId:2} {stepId:3}"
+                "params": "We got all the parallel {{stepId:2}}, {{stepId:3}} worlds "
             }
         }
     ]

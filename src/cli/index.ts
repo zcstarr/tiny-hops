@@ -1,5 +1,8 @@
 import { Command } from 'commander';
 import chalk from 'chalk';
+import { convertThopsToWorkflow } from '../lib';
+import { startWorkflowCmd } from '../commands';
+import { workflowStatus } from '../commands/monitor';
 
 const program = new Command();
 
@@ -21,22 +24,16 @@ program
     .description('Run a workflow with a specified configuration file')
     .action((config, options) => {
         console.log(chalk.green(`Running workflow with config: ${chalk.cyan(config)} and deposit: ${chalk.yellow(options.deposit)}`));
-        // Implementation here...
+        startWorkflowCmd(config, options.deposit);
+               // Implementation here...
     });
 
 program
-    .command('monitor <workflowId> <config>')
-    .description('Monitor a running workflow')
+    .command('status <workflowId> <config>')
+    .description('See the status of a workflow')
     .action((workflowId, config) => {
-        console.log(chalk.green(`Monitoring workflow: ${chalk.cyan(workflowId)} with config: ${chalk.cyan(config)}`));
-        // Implementation here...
-    });
-
-program
-    .command('pause <workflowId>')
-    .description('Pause a running workflow')
-    .action((workflowId) => {
-        console.log(chalk.green(`Pausing workflow: ${chalk.cyan(workflowId)}`));
+        console.log(chalk.green(`Displaying workflow status: ${chalk.cyan(workflowId)} with config: ${chalk.cyan(config)}`));
+        workflowStatus(workflowId, config)
         // Implementation here...
     });
 

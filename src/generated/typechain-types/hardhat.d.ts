@@ -14,6 +14,10 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
+      name: "CustomModicum",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.CustomModicum__factory>;
+    getContractFactory(
       name: "ModicumContract",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ModicumContract__factory>;
@@ -23,6 +27,11 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.TinyHops__factory>;
 
     getContractAt(
+      name: "CustomModicum",
+      address: string | ethers.Addressable,
+      signer?: ethers.Signer
+    ): Promise<Contracts.CustomModicum>;
+    getContractAt(
       name: "ModicumContract",
       address: string | ethers.Addressable,
       signer?: ethers.Signer
@@ -34,6 +43,10 @@ declare module "hardhat/types/runtime" {
     ): Promise<Contracts.TinyHops>;
 
     deployContract(
+      name: "CustomModicum",
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CustomModicum>;
+    deployContract(
       name: "ModicumContract",
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.ModicumContract>;
@@ -42,6 +55,11 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | DeployContractOptions
     ): Promise<Contracts.TinyHops>;
 
+    deployContract(
+      name: "CustomModicum",
+      args: any[],
+      signerOrOptions?: ethers.Signer | DeployContractOptions
+    ): Promise<Contracts.CustomModicum>;
     deployContract(
       name: "ModicumContract",
       args: any[],

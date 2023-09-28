@@ -89,6 +89,12 @@ const config: HardhatUserConfig = {
       gas: "auto",
       accounts: [PRIV_KEY],
       chainId: 1337
+    },
+    lilypad2: {
+        url: "http://testnetv2.arewehotshityet.com:8545",
+        gas: "auto",
+        accounts: [PRIV_KEY],
+        chainId: 1337
     }
     
   }

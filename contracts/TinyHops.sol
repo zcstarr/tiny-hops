@@ -162,7 +162,7 @@ contract TinyHops {
             }
         }
         workflowIdToOwner[workflowIdCounter] = msg.sender;
-
+        emit WorkflowAdded(workflowId, msg.sender);
         return workflowId;
     }
 
@@ -312,13 +312,24 @@ contract TinyHops {
         uint256 workflowId,
         uint256 workflowIndex
     ) internal {
+        console.log("next step");
         Workflow storage workflow = workflowIdToWorkflow[workflowId];
 
         uint256 numEntries = workflow.entries[workflowIndex].length;
         for (uint256 i = 0; i < numEntries; i = i + 1) {
             // This will also throw on underflow must have non zero balance at all times
             updateBalance(workflowId, workflow.entries[workflowIndex][i].cost);
+            console.log("past cost");
 
+            console.log("apply variable");
+            console.log(
+                LibTinyHopsTemplateResolver.applyVariables(
+                    workflow.entries[workflowIndex][i].params,
+                    workflowIdToResultCid[workflowId]
+                )
+            );
+
+            console.log("past apply variable");
             uint256 jobId = remoteContractInstance
                 .runModuleWithDefaultMediators{
                 value: workflow.entries[workflowIndex][i].cost
@@ -362,11 +373,7 @@ contract TinyHops {
 
     function getWorkFlowResults(
         uint256 workflowId
-    )
-        public
-        view
-        returns (uint256[] memory, string[] memory, string[] memory params)
-    {
+    ) public view returns (uint256[] memory, string[] memory, string[] memory) {
         Workflow storage workflow = workflowIdToWorkflow[workflowId];
         uint256 numEntries = 0;
         for (uint256 i = 0; i < workflow.entries.length; i++) {
@@ -448,6 +455,8 @@ contract TinyHops {
 
     // This must be implemented in order to receive the job results back!
     function receiveJobResults(uint256 _jobID, string calldata _cid) public {
+        console.log("jobId", _jobID);
+        console.log("cid", _cid);
         uint256 workflowId = _updateStepStatus(
             _jobID,
             _cid,

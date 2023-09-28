@@ -1,6 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "id": "https://tiny-hops-workflow-schema",
+  "$id": "https://tiny-hops-workflow-schema",
   "title": "workflow",
   "$ref": "#/definitions/workflow",
   "definitions": {
@@ -9,6 +8,7 @@
       "type": "string"
     },
     "workflow": {
+      "title": "workflow",
       "type": "object",
       "properties": {
         "version": {
@@ -21,6 +21,7 @@
       "required": ["version", "steps"]
     },
     "steps": {
+      "title": "steps",
         "type": "array",
         "items": {
             "oneOf": [
@@ -34,6 +35,7 @@
         }
     },
     "stepModule": {
+      "title":"stepModule",
       "cmd": {
         "title": "cmd",
         "type": "string"
@@ -42,7 +44,11 @@
         "title": "params",
         "type": "string"
       },
-      "required": ["cmd","params"]
+      "cost": {
+        "$ref":"#/definitions/cost"
+      },
+      "required": ["cmd","params", "cost"],
+      "additionalItems": false
     },
     "stepItem": {
       "title": "stepItem",
@@ -62,13 +68,19 @@
         }
       },
       "additionalItems": false,
-      "required": ["stepInput", "stepId"]
+      "required": ["stepModule", "stepId"]
     },
     "stepItems": {
+      "title": "stepItems",
       "type": "array",
       "items": {
         "$ref": "#/definitions/stepItem"
       }
+    },
+    "cost": {
+      "title": "cost",
+      "type": "string",
+      "pattern": "^[0-9]+[.][0-9]+$"
     },
     "stepId": {
         "title": "stepId",
@@ -83,6 +95,7 @@
       "type": "string"
     },
     "inputFormatStepId": {
+        "title": "inputFormatStepId",
         "type": "object",
         "properties": {
             "stepId": {
@@ -92,6 +105,7 @@
         "additionalProperties": false
     },
     "inputFormatCid": {
+      "title": "inputFormatCid",
       "type": "object",
       "properties": {
         "cid": {
@@ -101,6 +115,7 @@
       "additionalProperties": false
     },
     "inputFormatUri": {
+      "title": "inputFormatUri",
       "type": "object",
       "properties": {
         "uri": {
@@ -112,6 +127,7 @@
       "additionalProperties": false
     },
     "inputFormatMetadata": {
+      "title": "inputFormatMetadata",
       "oneOf": [
         {
           "$ref": "#/definitions/inputFormatCid"
@@ -125,6 +141,7 @@
       ]
     },
     "inputFormat": {
+      "title": "inputFormat",
       "type": "array",
       "items": {
         "$ref": "#/definitions/inputFormatMetadata"
